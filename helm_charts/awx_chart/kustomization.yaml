@@ -1,0 +1,81 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+  # Find the latest tag here: https://github.com/ansible/awx-operator/releases
+resources:
+ - github.com/ansible/awx-operator/config/default?ref=1.2.0
+ - awx.yml
+# Set the image tags to match the git version from above
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: 1.2.0
+# Specify a custom namespace in which to install AWX
+namespace: awx
+# still in testing 
+# I will integrate awx with keycloak as idp
+spec:
+ extra_settings:
+  - setting: TOWER_URL_BASE
+    value: '"https://awx.example.com"'
+  - setting: SOCIAL_AUTH_SAML_SP_PUBLIC_CERT
+    value: '"-----BEGIN CERTIFICATE-----..."'
+  - setting: SOCIAL_AUTH_SAML_SP_PRIVATE_KEY
+    value: '"-----BEGIN PRIVATE KEY-----..."'
+  - setting: SOCIAL_AUTH_SAML_ORG_INFO
+    value: {
+      "en-US": {
+          "name": "awx",
+          "url": "https://awx.example.com/",
+          "displayname": "AWX"
+        }
+      }
+  - setting: SOCIAL_AUTH_SAML_TECHNICAL_CONTACT
+    value: {
+      "givenName": "devops",
+      "emailAddress": "devops@example.com"
+    }
+  - setting: SOCIAL_AUTH_SAML_ORGANIZATION_MAP
+    value: {
+      "Default": {
+          "users": true
+      }
+    }
+  - setting: SOCIAL_AUTH_SAML_SUPPORT_CONTACT
+    value: {
+      "givenName": "idp",
+      "emailAddress": "idp@example.com"
+    }
+  - setting: SOCIAL_AUTH_SAML_ENABLED_IDPS
+    value: {
+      "idp-integ": {
+          "url": "https://idp.example.com/api/saml2/v1/sso",
+          "attr_username": "User.email",
+          "attr_email": "User.email",
+          "attr_first_name": "User.FirstName",
+          "attr_user_permanent_id": "UID",
+          "entity_id": "https://idp.example.com",
+          "x509cert": "foobar....",
+          "attr_last_name": "User.LastName"
+      }
+    }
+  - setting: SOCIAL_AUTH_SAML_ORGANIZATION_ATTR
+    value: {
+      "saml_admin_attr": "awx_admins",
+      "remove": false,
+      "remove_admins": false
+    }
+  - setting: SOCIAL_AUTH_SAML_TEAM_ATTR 
+    value: {
+      "remove": false,
+      "team_org_map": [
+          {
+              "organization": "Default",
+              "team": "anpa-it"
+          }
+      ],
+      "saml_attr": "groups"
+    }
+  - setting: SOCIAL_AUTH_SAML_USER_FLAGS_BY_ATTR
+    value: {
+      "is_superuser_value": "awx-admin",
+      "is_superuser_attr": "is_super_admin"
+    }

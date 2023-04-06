@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: denyonetotwo
+  namespace: devtwo
+spec:
+  podSelector:
+    matchLabels:
+      app: devtwo
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: devone

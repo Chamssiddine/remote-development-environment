@@ -1,0 +1,30 @@
+apiVersion: v2
+name: openldap-stack-ha
+dependencies:
+  - name: ltb-passwd
+    version: 0.1.x
+    condition: ltb-passwd.enabled
+  - name: phpldapadmin
+    version: 0.1.x
+    condition: phpldapadmin.enabled
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    tags:
+      - bitnami-common
+    version: 1.x.x
+home: https://www.openldap.org
+version: 4.1.1
+appVersion: 2.6.3
+description: Community developed LDAP software
+icon: https://raw.githubusercontent.com/jp-gouin/helm-openldap/master/logo.png
+keywords:
+  - ldap
+  - openldap
+  - iam-stack
+  - high availability
+sources:
+  - https://github.com/jp-gouin/helm-openldap
+maintainers:
+  - name: Jean-Philippe Gouin
+    email: jp-gouin@hotmail.fr
+engine: gotpl

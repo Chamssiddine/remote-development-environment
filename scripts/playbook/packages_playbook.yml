@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true	
+  tasks:
+    - name: install multiple packages
+      apt:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - curl
+        - wget
+        - rsync
+        - golang-go
+        - ansible
+        - vagrant
+        - ruby
+        - git

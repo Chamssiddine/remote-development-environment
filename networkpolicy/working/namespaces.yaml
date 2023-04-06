@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devone
+  labels:
+    purpose: devone
+    allow: "false"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devtwo
+  labels:
+    purpose: devtwo
+    allow: "false"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devthree
+  labels:
+    purpose: devthree
+    allow: "false"

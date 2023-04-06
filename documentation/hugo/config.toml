@@ -1,0 +1,31 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Remote Dev Env'
+theme = 'hugo-PaperMod'
+[menu]
+[[menu.main]]
+    identifier = "Home"
+    name = "Home"
+    weight = 10
+    url = "/"
+[[menu.main]]
+    identifier = "aboutus"
+    name = "About Us"
+    weight = 20
+    url = "/posts/aboutus"
+[[menu.main]]
+    identifier = "search"
+    name = "Search"
+    weight = 30
+    url = "/search/"
+[params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1_000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = [ "title", "permalink", "summary", "content" ]
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]

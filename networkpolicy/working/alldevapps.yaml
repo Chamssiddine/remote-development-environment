@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: appone
+  namespace: devone
+  labels:
+    app: devoneapp
+spec:
+  containers:
+  - name: devoneapp-container
+    image: nginx
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apptwo
+  namespace: devtwo
+  labels:
+    app: apptwo
+spec:
+  containers:
+  - name: apptwo-container
+    image: nginx
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: appthree
+  namespace: devthree
+  labels:
+    app: appthree
+spec:
+  containers:
+  - name: appthree-container
+    image: nginx
+    ports:
+    - containerPort: 80

@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-policy
+  namespace: devthree
+spec:
+  podSelector:
+    matchLabels:
+      app: devappthree
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: devappthree
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-policy
+  namespace: devtwo
+spec:
+  podSelector:
+    matchLabels:
+      app: devapptwo
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: devapptwo
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-policy
+  namespace: devone
+spec:
+  podSelector:
+    matchLabels:
+      app: devoneapp
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: devoneapp
+  policyTypes:
+  - Ingress

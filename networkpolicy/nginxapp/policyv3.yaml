@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+  namespace: devtwo
+spec:
+  podSelector:
+    matchLabels:
+  ingress: []
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+  namespace: devthree
+spec:
+  podSelector:
+    matchLabels:
+  ingress: []
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+  namespace: devone
+spec:
+  podSelector:
+    matchLabels:
+  ingress: []
+

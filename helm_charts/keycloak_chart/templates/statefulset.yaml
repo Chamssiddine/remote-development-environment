@@ -1,0 +1,142 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "keycloak-chart.fullname" . }}
+  labels:
+    {{- include "keycloak-chart.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "keycloak-chart.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "keycloak-chart.selectorLabels" . | nindent 6 }}
+
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "keycloak-chart.selectorLabels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: {{ .Values.keycloak.args }}
+          env:
+            {{- range $k, $v := .Values.keycloak.extraEnv }}
+            - name: {{ $k }}
+              value: "{{ $v }}"
+            {{- end }}
+            {{- range $k, $v := .Values.keycloak.extraEnvSecret }}
+            - name: {{ $k }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $v.secretName }}
+                  key: {{ $v.secretKey }}
+            {{- end }}
+
+            - name: KEYCLOAK_LOG_LEVEL
+              value: {{ .Values.keycloak.logLevel | quote }}
+            {{- if .Values.keycloak.adminUser }}
+            - name: KEYCLOAK_ADMIN
+              value: {{ .Values.keycloak.adminUser | quote }}
+            {{- end }}
+            - name: KC_PROXY
+              value: {{ .Values.keycloak.proxyMode | quote }}
+            - name: KC_HTTP_PORT
+              value: {{ .Values.keycloak.httpPort | quote }}
+            - name: KC_HTTP_ENABLED
+              value: {{ .Values.keycloak.httpEnabled | quote }}
+            - name: KC_HOSTNAME_STRICT
+              value: {{ .Values.keycloak.hostnameStrict | quote }}
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: {{ .Values.keycloak.hostnameStrictHttps | quote }}
+            {{- if .Values.keycloak.hostnamePath }}
+            - name: KC_HOSTNAME_PATH
+              value: {{ .Values.keycloak.hostnamePath | quote }}
+            {{- end }}
+
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                {{- if .Values.keycloak.adminPasswordSecret.name }}
+                  name: {{ .Values.keycloak.adminPasswordSecret.name }}
+                  key: {{ .Values.keycloak.adminPasswordSecret.key }}
+                {{- else }}
+                  name: {{ include "keycloak-chart.fullname" . }}-admin
+                  key: password
+                {{- end }}
+
+            {{- if .Values.keycloak.database.username }}
+            - name: KC_DB_USERNAME
+              value: {{ .Values.keycloak.database.username | quote }}
+            {{- end }}
+            {{- if .Values.keycloak.database.databaseName }}
+            - name: KC_DB_URL_DATABASE
+              value: {{ .Values.keycloak.database.databaseName | quote }}
+            {{- end }}
+            {{- if .Values.keycloak.database.host }}
+            - name: KC_DB_URL_HOST
+              value: {{ .Values.keycloak.database.host | quote }}
+            {{- end }}
+            {{- if .Values.keycloak.database.properties }}
+            - name: KC_DB_URL_PROPERTIES
+              value: {{ .Values.keycloak.database.properties | quote }}
+            {{- end }}
+            {{- if .Values.keycloak.database.passwordSecret.name }}
+            - name: KC_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ tpl .Values.keycloak.database.passwordSecret.name . }}
+                  key: {{ .Values.keycloak.database.passwordSecret.key }}
+            {{- end }}
+
+            - name: JAVA_OPTS_APPEND
+              {{- if .Values.keycloak.clustered }}
+              value: "-Djgroups.dns.query={{ include "keycloak-chart.fullname" . }}-headless {{ .Values.keycloak.javaOptsAppend }}"
+              {{- else }}
+              value: {{ .Values.keycloak.javaOptsAppend | quote }}
+              {{- end }}
+
+          ports:
+            - name: http
+              containerPort: {{ .Values.keycloak.httpPort }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.keycloak.healthCheckPath }}
+              port: {{ .Values.keycloak.httpPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .Values.extraVolumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

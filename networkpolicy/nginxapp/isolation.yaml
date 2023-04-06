@@ -1,0 +1,79 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-inter-namespace-traffic
+  namespace: devone
+spec:
+  podSelector: {}
+    # matchLabels:
+    #   app: devoneapp
+  policyTypes:
+    - Ingress
+    - Egress
+  # ingress:
+  # - from:
+  #   - namespaceSelector:
+  #       matchLabels:
+  #         name: devone
+
+  # egress:
+  # - to:
+  #   - namespaceSelector:
+  #       matchLabels:
+  #         name: devone
+
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-inter-namespace-traffic
+  namespace: devtwo
+spec:
+  podSelector: {}
+    # matchLabels:
+    #   app: devapptwo
+  policyTypes:
+    - Ingress
+    - Egress
+  # ingress:
+  # - from:
+  #   - namespaceSelector:
+  #       matchLabels:
+  #         name: devtwo
+  # egress:
+  # - to:
+  #   - namespaceSelector:
+  #       matchLabels:
+  #         name: devtwo
+
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-inter-namespace-traffic
+  namespace: devthree
+spec:
+  podSelector: {}
+    # matchLabels:
+    #   app: devappthree
+  policyTypes:
+    - Ingress
+    - Egress
+  # ingress:
+  #   - from:
+  #     - namespaceSelector:
+  #         matchLabels:
+  #           name: devthree
+
+  # egress:
+  #   - to:
+  #     - namespaceSelector:
+  #         matchLabels:
+  #           name: devthree
+    #   - namespaceSelector:
+    #       matchLabels:
+    #         name: devtwo

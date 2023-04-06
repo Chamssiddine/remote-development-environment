@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-communication
+  namespace: devone
+spec:
+  podSelector: 
+      matchLabels:
+        app: devone
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          allow: "false"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-communication
+  namespace: devtwo
+spec:
+  podSelector:
+      matchLabels:
+        app: devtwo
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          allow: "false"
+          
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-communication
+  namespace: devthree
+spec:
+  podSelector: 
+      matchLabels:
+        app: devthree
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          allow: "false"

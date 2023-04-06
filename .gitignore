@@ -1,0 +1,6 @@
+infrastructure/.terraform.lock.hcl
+infrastructure/.terraform
+infrastructure/modules/helm
+infrastructure/modules/peering
+infrastructure/modules/keycloak
+scripts/ssh/send_my_ssh_key_to_workstation.bash

@@ -11,10 +11,10 @@ I used a couple of templates from **gumroad.com**
 
 https://user-images.githubusercontent.com/62959061/229339823-0ffe29e0-6d53-4fce-87f3-a9386a8efe40.mp4
 
-## Diagram of the project (not completed)
+## Diagram of the project (In Progress)
 
-![remote development env](https://user-images.githubusercontent.com/62959061/229340095-12453891-b4c8-4062-82fc-60e92cac2087.png)
 
+![remodedevenv](https://user-images.githubusercontent.com/62959061/230421457-8730722c-31f3-4039-a1ad-578ee3f0ae13.png)
 
 
 The following tools were used to create this project:

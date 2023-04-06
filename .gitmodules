@@ -1,0 +1,3 @@
+[submodule "documentation/hugodocumentation"]
+	path = documentation/hugodocumentation
+	url = https://github.com/Chamssiddine/hugodocumentation.git

@@ -1,16 +1,23 @@
 infrastructure/.terraform.lock.hcl
 infrastructure/.terraform
+infrastructure/errored.tfstate
 scripts/ssh/send_my_ssh_key_to_workstation.bash
-
-
+infrastructure/modules/awxsaml/.terraform.lock.hcl
+infrastructure/modules/awxsaml/.terraform
+infrastructure/modules/awxsaml/terraform.tfstate
+infrastructure/modules/awxsaml/terraform.tfstate.backup
 infrastructure/modules/helm/.terraform
 infrastructure/modules/helm/.terraform.lock.hcl
 
 infrastructure/modules/helm/terraform.tfstate.backup
 infrastructure/modules/helm/terraform.tfstate
 
-
+infrastructure/modules/awxsaml/.
 
 infrastructure/modules/keycloak/.terraform.tfstate
 infrastructure/modules/keycloak/.terraform
 infrastructure/modules/keycloak/.terraform.lock.hcl
+
+keycloak_awx_integration
+rbac
+ansible

@@ -1,25 +1,11 @@
 locals {
   // to add new workstation just add a new list with it's name, machine_type, your prefered os and zone
   workstations = {
-  "workstation1" = { machine_type = "e2-medium", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "debian-cloud/debian-11", bucket_name = "test93345675" },  
-  "workstation2" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "debian-cloud/debian-11", bucket_name = "test9375345657" },
- "workstation3" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh"], image = "debian-cloud/debian-11", bucket_name = "test93753546" }
-  #  "keycloak" = { machine_type = "e2-medium", zone = "europe-west9-a", tag = ["keydap", "ssh","metrics"], image = "ubuntu-os-cloud/ubuntu-2210-amd64", bucket_name = "keycloakldap" }
+  "workstation1" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test93345675" },  
+  "workstation2" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test9375345657" },
+  "workstation3" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test93753546" }
   }
 }
-# resource "google_project_service" "compute" {
-#   service                    = "compute.googleapis.com"
-#   project                    = "secret-device-372619" #"devops-372620"
-#   disable_on_destroy         = true
-#   disable_dependent_services = true
-# }
-
-# resource "google_project_service" "container" {
-#   service                    = "container.googleapis.com"
-#   project                    = "secret-device-372619" #var.gcp_project #"devops-372620"
-#   disable_on_destroy         = true
-#   disable_dependent_services = true
-# }
      
 resource "google_storage_bucket" "workstation-dev-station" {
   for_each      = local.workstations
@@ -112,11 +98,16 @@ resource "google_compute_instance" "workstation" {
 
   metadata = {
     enable-oslogin = true
+    # ssh-keys = "chamseddine:${file("~/.ssh/del.pub")}"
+
   }
   
   boot_disk {
     initialize_params {
       image = each.value.image
+      labels = {
+        labels = "workstation"
+      }
     }
   }
   metadata_startup_script = "sudo apt-get update; sudo apt-get install -y build-essential git wget curl;"
@@ -165,7 +156,7 @@ resource "google_compute_instance" "workstation" {
 #   google_compute_instance.workstation
 # ]
 # provisioner "local-exec" {
-#     command = "bash /Users/chamseddine/Documents/github/remote-dev-env/scripts/ssh/send_my_ssh_key_to_workstation.bash"
+#     command = "gcloud compute scp "
 #   }
 # }
 

@@ -1,5 +1,5 @@
 resource "google_compute_router_nat" "nat" {
-  project                            = "secret-device-372619" #var.gcp_project #"devops-372620"
+  project                            = var.gcp_project
   name                               = "nat"
   router                             = google_compute_router.router.name
   region                             = "us-central1"
@@ -13,7 +13,7 @@ resource "google_compute_router_nat" "nat" {
 }
 
 resource "google_compute_address" "nat" {
-  project      = "secret-device-372619" #var.gcp_project #"devops-372620"
+  project      = var.gcp_project
   name         = "nat"
   address_type = "EXTERNAL"
   network_tier = "PREMIUM"

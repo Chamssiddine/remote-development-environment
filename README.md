@@ -58,7 +58,7 @@ To get started with this project, follow these steps:
 
 ## Things Missing in the Documentation
 
-Currently, the documentation is missing screenshots for configuring VPC peering and SSO with Keycloak. However, Terraform files are provided, and some modifications need to be made to get Grafana with Keycloak. I'm doing our best to get the detailed documentation done, but the project is still in progress. If you have any questions, feel free to contact us at `chamssiddine.abdderrahim@etudiant-isi.utm.tn`.
+Currently, the documentation is missing screenshots for configuring VPC peering and SSO with Keycloak. However, Terraform files are provided, and some modifications need to be made to get Grafana with Keycloak. I'm doing my best to get the detailed documentation done, but the project is still in progress. If you have any questions, feel free to contact us at `chamssiddine.abdderrahim@etudiant-isi.utm.tn`.
 
 ## Troubleshooting
 

@@ -1,0 +1,28 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer-role
+  namespace: amine
+rules:
+- apiGroups: [""]
+  resources:
+  - pods
+  - services
+  - deployments
+  - configmaps
+  - secrets
+  - persistentvolumeclaims
+  - ingresses
+  - jobs
+  - cronjobs
+  - replicasets
+  - statefulsets
+  - daemonsets
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete

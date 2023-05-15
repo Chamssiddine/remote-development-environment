@@ -1,0 +1,19 @@
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" cacheDuration="P10D" entityID="http://35.202.182.80">
+    <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <md:KeyDescriptor use="signing"><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:X509Data><ds:X509Certificate>MIICljCCAX4CCQD28rzf86D/2jANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJUTjAeFw0yMzAyMjgxMDI4MDdaFw0yNDAyMjgxMDI4MDdaMA0xCzAJBgNVBAYTAlROMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvzt0wIxoIqwvp0Zu+NIKnWAMNBCCk5M1tUn4ZY6aEvVFFIMiMKKMoted5Rz1tWARCWrTXFK1h+TZKGNgFIj+iI2WrJ/+hD/Ty8LsHMKmu15Wu+fs4cGF9Zbfl/csHfLZURSrcgLUFoI0Ov5bBdfr/s/h5nf6gyOsVR9ZzD2z29btSrj4Q/wCukyA7HbKHy3HI3zB6jfkmSBj31L1unmQWwE47tNt1HB3qbGlIIcll7OJkmcmcfJTgmHljdu4AkawvL1kkVC6NlS1P2Aq8zc75QhIGGqnube83tccjzYQWQZIhkFapijm+5tG61KdlwThsGfs9zaRJkUacL9hVpVO+QIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCQWfhvypl3o77Txy9yNIhpX4NFGwjELx3f3HZxn2PnUuIjGLCGj+OaWCDJ/Gw6rSCAYR/NxFaPHmoyzf6UNGhZzxd2FGi3GlUSwdMB1x1ZpldNNowGfOib1pYbC4ym3CqnHuT13Dwce07QPQPTqd5qiqR7rFTR9HYTqdtVx+peABrLxP/yS6+Uc6NAEKQlOvP3GJNt3FRFQspr31sKZVjUDQzwY1LiEgsT8y7XKorN5UO4JIMTFArBXICL0iweoF/fhqfJSaevSRPeoTLMI+zLqfpeX/C0PHXOqzaK75lcNqaFkai1NhPjwBQBu9FLx4BYZDkHhwUih7TJpiciBVu0</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://35.238.48.77/sso/complete/saml/" index="1"/>
+    </md:SPSSODescriptor>
+    <md:Organization>
+        <md:OrganizationName xml:lang="en-US">keycloak</md:OrganizationName>
+        <md:OrganizationDisplayName xml:lang="en-US">keycloak</md:OrganizationDisplayName>
+        <md:OrganizationURL xml:lang="en-US">http://35.202.182.80</md:OrganizationURL>
+    </md:Organization>
+    <md:ContactPerson contactType="technical">
+        <md:GivenName>chamseddine</md:GivenName>
+        <md:EmailAddress>chamseddine.abderrahim@gmail.com</md:EmailAddress>
+    </md:ContactPerson>
+    <md:ContactPerson contactType="support">
+        <md:GivenName>chamseddine</md:GivenName>
+        <md:EmailAddress>chamseddine.abderrahim@gmail.com</md:EmailAddress>
+    </md:ContactPerson>
+</md:EntityDescriptor>

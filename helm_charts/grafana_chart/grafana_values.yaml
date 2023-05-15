@@ -171,6 +171,7 @@ gossipPortName: gossip
 service:
   enabled: true
   type: LoadBalancer
+  # type: ClusterIP
   port: 80
   targetPort: 3000
     # targetPort: 4181 To be used with a proxy extraContainer
@@ -695,14 +696,15 @@ grafana.ini:
       name: Keycloak
       allow_sign_up: true
       scopes: profile,email,groups
-      auth_url: http://34.72.91.134/auth/realms/grafana/protocol/openid-connect/auth
-      token_url: http://34.72.91.134/auth/realms/grafana/protocol/openid-connect/token
-      api_url: http://34.72.91.134/auth/realms/grafana/protocol/openid-connect/userinfo
+      auth_url: http://34.71.107.34/auth/realms/grafana/protocol/openid-connect/auth
+      token_url: http://34.71.107.34/auth/realms/grafana/protocol/openid-connect/token
+      api_url: http://34.71.107.34/auth/realms/grafana/protocol/openid-connect/userinfo
       client_id: grafana
       client_secret: grafana-client-secret
       role_attribute_path: contains(groups[*], 'grafana-admin') && 'Admin' || contains(groups[*], 'grafana-dev') && 'Editor' || 'Viewer'
   server:
-      root_url: http://34.68.246.74
+  # this is for grafana url
+      root_url: http://34.172.5.122
     
         
   # ingress:

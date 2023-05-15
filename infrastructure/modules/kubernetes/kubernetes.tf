@@ -7,7 +7,7 @@
 #   }
 # }
 resource "google_container_cluster" "primary" {
-  project                  = "secret-device-372619"
+  project                  = var.gcp_project
   name                     = "primary"
   location                 = "us-central1-a"
   remove_default_node_pool = true
@@ -33,7 +33,7 @@ resource "google_container_cluster" "primary" {
     channel = "REGULAR"
   }
   workload_identity_config {
-    workload_pool = "secret-device-372619.svc.id.goog"
+    workload_pool = "${var.gcp_project}.svc.id.goog"
   }
   ip_allocation_policy {
     cluster_secondary_range_name  = "k8s-pod-range"
@@ -54,7 +54,7 @@ resource "null_resource" "get-credentials" {
   depends_on = [google_container_cluster.primary]
 
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials primary --zone us-central1-a --project secret-device-372619"
+    command = "gcloud container clusters get-credentials primary --zone us-central1-a --project ${var.gcp_project}"
   }
 }
 

@@ -1,8 +1,8 @@
 # define GCP project name
 variable "gcp_project" {
-  type        = string // workstation-375011
+  type        = string // 
   description = "GCP project name"
-  default     = "secret-device-372619"
+  default     = "remotedevenv-383413"
 }
 
 # define GCP region

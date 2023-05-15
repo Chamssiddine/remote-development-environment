@@ -7,3 +7,132 @@ spec:
   service_type: LoadBalancer
   loadbalancer_protocol: http
   loadbalancer_port: 80
+
+# controller_settings:
+#   settings:
+#     SOCIAL_AUTH_SAML_SP_ENTITY_ID: controller.node
+#     SOCIAL_AUTH_SAML_SP_PUBLIC_CERT: |-
+#       -----BEGIN CERTIFICATE-----
+#       MIIC6jCCAdICCQC9/Ul+zL97CzANBgkqhkiG9w0BAQsFADA3MQswCQYDVQQGEwJ0
+#       bjELMAkGA1UECAwCYmExCzAJBgNVBAcMAm1yMQ4wDAYDVQQKDAVjaGFtczAeFw0y
+#       MzA0MTAwOTAwNDhaFw0yNDA0MDkwOTAwNDhaMDcxCzAJBgNVBAYTAnRuMQswCQYD
+#       VQQIDAJiYTELMAkGA1UEBwwCbXIxDjAMBgNVBAoMBWNoYW1zMIIBIjANBgkqhkiG
+#       9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo9ICUPfIt6WhFXfvV2fY4etYyEMUoP0/VEzf
+#       XobKfKjLqcoCzS+6NweEdwdJCtjAlxHk7y6ZzA3M+hWISvVTZBu/Ex4J6c/fS1ze
+#       qxF26EZl2VXGj5oxLQpaQvKWFXzICw+/7gAXwl2yHgBFORVKb/LpcVe4ayLtnqwv
+#       nHMCDdYehG8frenLG/s2ZH65EqDzR9QQlkNSs2RvSI00mI9O0XD1lsQsezI3UJR2
+#       7YJ36TkNvDGw5SaIYGQOt5CEgvC7FzP1enWKPAuX0Aps8K+HfIxjR1YpIAWOsR4+
+#       wKsc6X2yzB578gkT8vQR5YXrUI2xXop9Zkizf+8fqvvS5I1nbQIDAQABMA0GCSqG
+#       SIb3DQEBCwUAA4IBAQAsm4SLvqUrLQ3yb7NQ9p1zD/Lq0R0SFGYUObb5DsNdAtKs
+#       NVweK+lOfGzVE0BiS7OnuZGUsbqcvrlAlqW5H67S9e9Wt6H+B+5FY8BDztuPbq+9
+#       A2q62b8DV1BOGKWmAAW5AfFiSu2IqgBtRc6Euj39z25xtI6/nqW8i8j5mDfaxPx+
+#       4DANiZGxjJb+lICNgWmaqWEjdZ3seyjYdi9S3YCzBFpycZevDaqgg91DO4fYa0NV
+#       O935GNyFFE19+tc34ARLy/7fiwuwLzQQ8k7zmUnrDYvDaswE60qbmI3aksneLl+J
+#       i7I3FSnVwsDMv3WiabIH3uMSZ4WQoGaHn2UyZAMr
+#       -----END CERTIFICATE-----
+
+#     SOCIAL_AUTH_SAML_SP_PRIVATE_KEY: |-
+#       -----BEGIN PRIVATE KEY-----
+#       MIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCj0gJQ98i3paEV
+#       d+9XZ9jh61jIQxSg/T9UTN9ehsp8qMupygLNL7o3B4R3B0kK2MCXEeTvLpnMDcz6
+#       FYhK9VNkG78THgnpz99LXN6rEXboRmXZVcaPmjEtClpC8pYVfMgLD7/uABfCXbIe
+#       AEU5FUpv8ulxV7hrIu2erC+ccwIN1h6Ebx+t6csb+zZkfrkSoPNH1BCWQ1KzZG9I
+#       jTSYj07RcPWWxCx7MjdQlHbtgnfpOQ28MbDlJohgZA63kISC8LsXM/V6dYo8C5fQ
+#       Cmzwr4d8jGNHVikgBY6xHj7AqxzpfbLMHnvyCRPy9BHlhetQjbFein1mSLN/7x+q
+#       +9LkjWdtAgMBAAECggEAToMKyyVF1AYUQoa9dWV2wyeY4DmN/G4C2PMSpmnxR3da
+#       TGBdoVr7Yv4+VRFvxzwEaSKRVrQ9z1bZ4w1IyavzsGm/1Hi0BZOzj5nNuazgEQgU
+#       Len3BMHASbbJdYZvuZKZCPweXwE6YdOn1ssIYgg7KZYAnWqOHwKZYU9ibheMZ3Zv
+#       sxVLedyXdw4BlmPUzDZ06MX+R2EstltHdV+tgRtfaJ93IK+hGud30NyU/Dh+yqbt
+#       th6ptHvZxKlaqFRcYnqQEgEdwoUsUmrHFpb8qgGCMnXP+IlLrhUXai/h9QTvOgqh
+#       t/7p5yWqgBcgDlhpamKzgXIUSuhtiCm59gtvMoL2PQKBgQDUYYAckCxNkpQvhYYv
+#       cB7HtZwYw1/ou31iRUnsWwHYrTY1mybklFizbnvguCPTpzRPZbkiH4rfY3JYjXb5
+#       H0XlWnFpORA7kRE9FfqK8N2K5LzeLRvcNWgpw+4ySw7wOMSLO4gFKRpiYScdSZuD
+#       sAKxYz1KZCRkEf2qWJoDs2OBywKBgQDFd07Xb6s0wWBe6v1N3dm0tcnQL0mF5Vod
+#       BfF32XT5HMfrTTxbQUJCiabB+GRD8R5fu/M7lh5X+cwNtCc/c7+t8zIha9ggBpbO
+#       z9LGth0VgmpYCQtTwoQdiroTpA17MkkFgbt59HfHv8XMU0Y482A3+5UB7yMXnjNM
+#       GSmA5gO0pwJ/HrH40igEPzHwOO4Tdse9qx+Ub//M3NY8SPe6t25v1eEy9Ix4EpFe
+#       QJC3VsNGalDAPrl1CHmGmMLGxAWuLFNYxs1LlumobvOIikui6nHlky18HqBmZm1R
+#       oLewtZQjlJSf03/HKPfH2HAyNwlscJv/x6OQODBBEjWHdBdaKy7CMwKBgCLM+goh
+#       1gyAIBnaVDYK6Tld6GlWTCDa4NzIlVvH6UOV/O3NONvkTmcnl0oMGq+WqQG6QA26
+#       UTK0BXBM1bXrElb3y1f0h6xtPNrJ6Z23rryBtXg6b9KdL2d9cXnQqceSfygHSyEd
+#       IpcDhzqRWoji64wyPHqQyKB68xNwQ85Bu1l1AoGAZNXvrE9ZtMy8s0sFk/V3LSmu
+#       UJaiw6cukmfZ16o4DCzum4hIx4mkBQbh9E+qCG1u/Ltb+p4jAIVEpLfnaQ7Ac3oK
+#       sFXnna/ixRiNysORG9svpoVVbKcl7ktEWM6FhVGiNIPOiPaUItQ7IV8rSt24Mb/Q
+#       rK2+DZzLb+tGsVlQpfw=
+#       -----END PRIVATE KEY-----
+
+#     SOCIAL_AUTH_SAML_ORG_INFO:
+#       en-US:
+#         displayname: RHSSO
+#         url: https://sso.node:8443
+#         name: rsa-generated
+#     SOCIAL_AUTH_SAML_TECHNICAL_CONTACT:
+#       givenName: Person
+#       emailAddress: person@org.com
+#     SOCIAL_AUTH_SAML_SUPPORT_CONTACT:
+#       givenName: Person
+#       emailAddress: person@org.com
+#     SOCIAL_AUTH_SAML_ENABLED_IDPS:
+#       RHSSO:
+#         entity_id: https://sso.node:8443/auth/realms/ansible-automation-platform
+#         attr_user_permanent_id: name_id
+#         attr_email: email
+#         attr_username: username
+#         attr_groups: groups
+#         url: https://sso.node:8443/auth/realms/ansible-automation-platform/protocol/saml
+#         x509cert: "-----BEGIN CERTIFICATE-----CERTVALUE-----END CERTIFICATE-----"
+#         attr_last_name: last_name
+#         attr_first_name: first_name
+  # extra_settings:
+  #     - setting: TOWER_URL_BASE
+  #       value: '"https://awx.example.com"'
+  #     - setting: SOCIAL_AUTH_SAML_SP_PUBLIC_CERT
+  #       value: '"MIIC6jCCAdICCQC9/Ul+zL97CzANBgkqhkiG9w0BAQsFADA3MQswCQYDVQQGEwJ0bjELMAkGA1UECAwCYmExCzAJBgNVBAcMAm1yMQ4wDAYDVQQKDAVjaGFtczAeFw0yMzA0MTAwOTAwNDhaFw0yNDA0MDkwOTAwNDhaMDcxCzAJBgNVBAYTAnRuMQswCQYDVQQIDAJiYTELMAkGA1UEBwwCbXIxDjAMBgNVBAoMBWNoYW1zMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo9ICUPfIt6WhFXfvV2fY4etYyEMUoP0/VEzfXobKfKjLqcoCzS+6NweEdwdJCtjAlxHk7y6ZzA3M+hWISvVTZBu/Ex4J6c/fS1zeqxF26EZl2VXGj5oxLQpaQvKWFXzICw+/7gAXwl2yHgBFORVKb/LpcVe4ayLtnqwvnHMCDdYehG8frenLG/s2ZH65EqDzR9QQlkNSs2RvSI00mI9O0XD1lsQsezI3UJR27YJ36TkNvDGw5SaIYGQOt5CEgvC7FzP1enWKPAuX0Aps8K+HfIxjR1YpIAWOsR4+wKsc6X2yzB578gkT8vQR5YXrUI2xXop9Zkizf+8fqvvS5I1nbQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAsm4SLvqUrLQ3yb7NQ9p1zD/Lq0R0SFGYUObb5DsNdAtKsNVweK+lOfGzVE0BiS7OnuZGUsbqcvrlAlqW5H67S9e9Wt6H+B+5FY8BDztuPbq+9A2q62b8DV1BOGKWmAAW5AfFiSu2IqgBtRc6Euj39z25xtI6/nqW8i8j5mDfaxPx+4DANiZGxjJb+lICNgWmaqWEjdZ3seyjYdi9S3YCzBFpycZevDaqgg91DO4fYa0NVO935GNyFFE19+tc34ARLy/7fiwuwLzQQ8k7zmUnrDYvDaswE60qbmI3aksneLl+Ji7I3FSnVwsDMv3WiabIH3uMSZ4WQoGaHn2UyZAMr"'
+  #     - setting: SOCIAL_AUTH_SAML_SP_PRIVATE_KEY
+  #       value: '"MIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCj0gJQ98i3paEVd+9XZ9jh61jIQxSg/T9UTN9ehsp8qMupygLNL7o3B4R3B0kK2MCXEeTvLpnMDcz6FYhK9VNkG78THgnpz99LXN6rEXboRmXZVcaPmjEtClpC8pYVfMgLD7/uABfCXbIeAEU5FUpv8ulxV7hrIu2erC+ccwIN1h6Ebx+t6csb+zZkfrkSoPNH1BCWQ1KzZG9IjTSYj07RcPWWxCx7MjdQlHbtgnfpOQ28MbDlJohgZA63kISC8LsXM/V6dYo8C5fQCmzwr4d8jGNHVikgBY6xHj7AqxzpfbLMHnvyCRPy9BHlhetQjbFein1mSLN/7x+q+9LkjWdtAgMBAAECggEAToMKyyVF1AYUQoa9dWV2wyeY4DmN/G4C2PMSpmnxR3daTGBdoVr7Yv4+VRFvxzwEaSKRVrQ9z1bZ4w1IyavzsGm/1Hi0BZOzj5nNuazgEQgULen3BMHASbbJdYZvuZKZCPweXwE6YdOn1ssIYgg7KZYAnWqOHwKZYU9ibheMZ3ZvsxVLedyXdw4BlmPUzDZ06MX+R2EstltHdV+tgRtfaJ93IK+hGud30NyU/Dh+yqbtth6ptHvZxKlaqFRcYnqQEgEdwoUsUmrHFpb8qgGCMnXP+IlLrhUXai/h9QTvOgqht/7p5yWqgBcgDlhpamKzgXIUSuhtiCm59gtvMoL2PQKBgQDUYYAckCxNkpQvhYYvcB7HtZwYw1/ou31iRUnsWwHYrTY1mybklFizbnvguCPTpzRPZbkiH4rfY3JYjXb5H0XlWnFpORA7kRE9FfqK8N2K5LzeLRvcNWgpw+4ySw7wOMSLO4gFKRpiYScdSZuDsAKxYz1KZCRkEf2qWJoDs2OBywKBgQDFd07Xb6s0wWBe6v1N3dm0tcnQL0mF5VodBfF32XT5HMfrTTxbQUJCiabB+GRD8R5fu/M7lh5X+cwNtCc/c7+t8zIha9ggBpbOz9LGth0VgmpYCQtTwoQdiroTpA17MkkFgbt59HfHv8XMU0Y482A3+5UB7yMXnjNMGSmA5gO0pwJ/HrH40igEPzHwOO4Tdse9qx+Ub//M3NY8SPe6t25v1eEy9Ix4EpFeQJC3VsNGalDAPrl1CHmGmMLGxAWuLFNYxs1LlumobvOIikui6nHlky18HqBmZm1RoLewtZQjlJSf03/HKPfH2HAyNwlscJv/x6OQODBBEjWHdBdaKy7CMwKBgCLM+goh1gyAIBnaVDYK6Tld6GlWTCDa4NzIlVvH6UOV/O3NONvkTmcnl0oMGq+WqQG6QA26UTK0BXBM1bXrElb3y1f0h6xtPNrJ6Z23rryBtXg6b9KdL2d9cXnQqceSfygHSyEdIpcDhzqRWoji64wyPHqQyKB68xNwQ85Bu1l1AoGAZNXvrE9ZtMy8s0sFk/V3LSmuUJaiw6cukmfZ16o4DCzum4hIx4mkBQbh9E+qCG1u/Ltb+p4jAIVEpLfnaQ7Ac3oKsFXnna/ixRiNysORG9svpoVVbKcl7ktEWM6FhVGiNIPOiPaUItQ7IV8rSt24Mb/QrK2+DZzLb+tGsVlQpfw="'
+  #     - setting: SOCIAL_AUTH_SAML_ORG_INFO
+  #       value: {
+  #         "en-US": {
+  #             "name": "awx",
+  #             "url": "http://127.0.0.1:62487/",
+  #             "displayname": "AWX"
+  #           }
+  #         }
+  #     - setting: SOCIAL_AUTH_SAML_TECHNICAL_CONTACT
+  #       value: {
+  #         "givenName": "chams",
+  #         "emailAddress": "chamseddine.abderrahim@gmail.com"
+  #       }
+  #     - setting: SOCIAL_AUTH_SAML_ORGANIZATION_MAP
+      #   value: {
+      #     "Default": {
+      #         "users": true
+      #     },
+      #     "Systems Engineering": {
+      #     "remove_users": false,
+      #     "remove_admins": false,
+      #     "users": true,
+      #     "admins": [
+      #     "chamseddine.abderrahim@gmail.com"
+      #   ]
+      # }
+      #   }
+  #     - setting: SOCIAL_AUTH_SAML_SUPPORT_CONTACT
+  #       value: {
+  #         "givenName": "chams",
+  #         "emailAddress": "chamseddine.abderrahim@gmail.com"
+  #       }
+  #     - setting: SOCIAL_AUTH_SAML_ENABLED_IDPS
+  #       value: {
+  #         "keycloak": {
+  #             "url": "http://127.0.0.1:62699/api/saml2/v1/sso",
+  #             "attr_username": "username",
+  #             "attr_email": "email",
+  #             "attr_first_name": "first_name",
+  #             "attr_user_permanent_id": "name_id",
+  #             "attr_groups": "groups",
+  #             "entity_id": "http://127.0.0.1:62699/auth/realms/tower",
+  #             "x509cert": "MIIC6jCCAdICCQC9/Ul+zL97CzANBgkqhkiG9w0BAQsFADA3MQswCQYDVQQGEwJ0bjELMAkGA1UECAwCYmExCzAJBgNVBAcMAm1yMQ4wDAYDVQQKDAVjaGFtczAeFw0yMzA0MTAwOTAwNDhaFw0yNDA0MDkwOTAwNDhaMDcxCzAJBgNVBAYTAnRuMQswCQYDVQQIDAJiYTELMAkGA1UEBwwCbXIxDjAMBgNVBAoMBWNoYW1zMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo9ICUPfIt6WhFXfvV2fY4etYyEMUoP0/VEzfXobKfKjLqcoCzS+6NweEdwdJCtjAlxHk7y6ZzA3M+hWISvVTZBu/Ex4J6c/fS1zeqxF26EZl2VXGj5oxLQpaQvKWFXzICw+/7gAXwl2yHgBFORVKb/LpcVe4ayLtnqwvnHMCDdYehG8frenLG/s2ZH65EqDzR9QQlkNSs2RvSI00mI9O0XD1lsQsezI3UJR27YJ36TkNvDGw5SaIYGQOt5CEgvC7FzP1enWKPAuX0Aps8K+HfIxjR1YpIAWOsR4+wKsc6X2yzB578gkT8vQR5YXrUI2xXop9Zkizf+8fqvvS5I1nbQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAsm4SLvqUrLQ3yb7NQ9p1zD/Lq0R0SFGYUObb5DsNdAtKsNVweK+lOfGzVE0BiS7OnuZGUsbqcvrlAlqW5H67S9e9Wt6H+B+5FY8BDztuPbq+9A2q62b8DV1BOGKWmAAW5AfFiSu2IqgBtRc6Euj39z25xtI6/nqW8i8j5mDfaxPx+4DANiZGxjJb+lICNgWmaqWEjdZ3seyjYdi9S3YCzBFpycZevDaqgg91DO4fYa0NVO935GNyFFE19+tc34ARLy/7fiwuwLzQQ8k7zmUnrDYvDaswE60qbmI3aksneLl+Ji7I3FSnVwsDMv3WiabIH3uMSZ4WQoGaHn2UyZAMr",
+  #             "attr_last_name": "last_name",
+  #         }
+  #       }

@@ -1,0 +1,10 @@
+plugin: gcp_compute
+zones: # populate inventory with instances in these regions
+  - europe-west9-a
+projects:
+  - remotedevenv-383413
+auth_kind: serviceaccount
+service_account_file: /opt/ansible/inventory/service-account.json
+groups:
+  workstation_instances:
+

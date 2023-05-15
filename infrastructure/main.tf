@@ -1,7 +1,7 @@
 module "workstation" {
 
   source        = "./modules/workstation"
-  gcp_project   = "secret-device-372619"
+  gcp_project   = var.gcp_project
   gcp_region    = "europe-west9"
   gcp_zone      = "europe-west9-a"
   storage-class = "STANDARD"
@@ -11,10 +11,15 @@ output "allworkstationip" {
 }
 module "kubernetes" {
   source      = "./modules/kubernetes"
-  gcp_project = "secret-device-372619"
+  gcp_project = var.gcp_project
   gcp_region  = "europe-west9"
   gcp_zone    = "europe-west9-a"
 
+}
+
+module "rbac" {
+  depends_on = [ module.kubernetes ]
+  source      = "./modules/rbac"
 }
 output "k8sclustersname" {
   value = module.kubernetes.k8sclustername

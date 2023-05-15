@@ -1,5 +1,5 @@
 resource "google_compute_subnetwork" "private" {
-  project                  = "secret-device-372619" #var.gcp_project #"devops-372620"
+  project                  = var.gcp_project #"devops-372620"
   name                     = "private"
   ip_cidr_range            = "10.0.2.0/24"
   region                   = "us-central1"

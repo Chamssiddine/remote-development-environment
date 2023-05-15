@@ -261,6 +261,7 @@ service:
   labels: {}
   # key: value
   # The Service type
+  # type: ClusterIP
   type: LoadBalancer
   # Optional IP for the load balancer. Used for services of type LoadBalancer only
   loadBalancerIP: ""

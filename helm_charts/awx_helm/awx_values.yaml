@@ -1,0 +1,141 @@
+# Default values for awx
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullnameOverride: "awx" # Bug bites us, if this is unspecified!
+replicaCount: 1
+
+# awx_web & tasks are deployed in the same pod
+awx_web:
+  image:
+    repository: ansible/awx_web
+    tag: 9.1.0
+    pullPolicy: IfNotPresent
+
+awx_task:
+  image:
+    repository: ansible/awx_task
+    tag: 9.1.0
+    pullPolicy: IfNotPresent
+
+# AWX config
+awx_secret_key: awxsecret
+awx_url_base: 'https://towerhost'
+default_admin_user: admin
+default_admin_password: password
+
+server_email: 'root@localhost'
+default_from_email: 'webmaster@localhost'
+email_subject_prefix: '[AWX] '
+email_host: 'localhost'
+email_port: 25
+email_host_user: ''
+email_host_password: ''
+email_use_tls: 'False'
+
+deployment:
+  annotations: {}
+
+service:
+  internalPort: 8052
+  externalPort: 8052
+
+ingress:
+  enabled: false
+  # Used to create an Ingress record.
+  hosts:
+    - chart-example.local
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  tls: []
+    # Secrets must be manually created in the namespace.
+    # - secretName: chart-example-tls
+    #   hosts:
+    #     - chart-example.local
+
+metrics:
+  enabled: false
+    ## Metrics exporter port
+  port: 9419
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9090"
+  ## Prometheus Service Monitor
+  ## ref: https://github.com/coreos/prometheus-operator
+  ##      https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+  serviceMonitor:
+    ## If the operator is installed in your cluster, set to true to create a Service Monitor Entry
+    enabled: false
+    ## Specify the namespace in which the serviceMonitor resource will be created
+    # namespace: ""
+    ## Specify the interval at which metrics should be scraped
+    interval: 30s
+    ## Specify the timeout after which the scrape is ended
+    # scrapeTimeout: 30s
+    ## Specify Metric Relabellings to add to the scrape endpoint
+    # relabellings:
+    ## Specify honorLabels parameter to add the scrape endpoint
+    honorLabels: false
+    ## Used to pass Labels that are used by the Prometheus installed in your cluster to select Service Monitors to work with
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
+    additionalLabels: {}
+
+
+
+# Chart values https://github.com/helm/charts/blob/master/stable/memcached/values.yaml
+memcached:
+  install: true
+
+# Chart values https://github.com/helm/charts/blob/master/stable/rabbitmq/values.yaml
+rabbitmq:
+  install: true
+  rabbitmq:
+    username: awx
+    password: awx
+    ## Configution file content https://www.rabbitmq.com/configure.html#configuration-files
+    configuration: |-
+        ## Clustering
+        cluster_formation.peer_discovery_backend  = rabbit_peer_discovery_k8s
+        cluster_formation.k8s.host = kubernetes.default.svc.cluster.local
+        cluster_formation.node_cleanup.interval = 10
+        cluster_formation.node_cleanup.only_log_warning = false
+        cluster_partition_handling = autoheal
+        ## queue master locator
+        queue_master_locator=min-masters
+        ## enable guest user
+        loopback_users.guest = false
+        ## awx vhost
+        default_vhost = awx
+# Chart values https://github.com/helm/charts/blob/master/stable/postgresql/values.yaml
+postgresql:
+  install: true
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 9.6
+  postgresqlUsername: postgres
+  postgresqlPassword: awx
+  postgresqlDatabase: awx
+  persistence:
+    enabled: true
+  metrics:
+    enabled: false
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

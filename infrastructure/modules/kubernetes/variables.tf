@@ -9,7 +9,7 @@ variable "gcp_project" {
 variable "gcp_region" {
   type        = string //europe-west9
   description = "GCP region"
-  default     = "europe-west9"
+  default     = "us-central1"
 }
 
 # define GCP zone

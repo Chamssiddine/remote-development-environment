@@ -20,7 +20,7 @@ awx_task:
 
 # AWX config
 awx_secret_key: awxsecret
-awx_url_base: 'https://towerhost'
+awx_url_base: 'http://towerhost'
 default_admin_user: admin
 default_admin_password: password
 

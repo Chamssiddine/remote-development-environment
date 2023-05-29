@@ -21,3 +21,4 @@ infrastructure/modules/keycloak/.terraform.lock.hcl
 keycloak_awx_integration
 rbac
 ansible
+Continous\ Integration

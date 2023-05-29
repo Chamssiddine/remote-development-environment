@@ -3,7 +3,7 @@
 
 resource "null_resource" "get-credentials" {
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials primary --zone us-central1-a --project secret-device-372619"
+    command = "gcloud container clusters get-credentials primary --zone us-central1-a --project remotedevenv-383413"
   }
 }
 
@@ -15,50 +15,10 @@ resource "helm_release" "keycloak" {
   #namespace  = "keycloak"
   repository = "https://codecentric.github.io/helm-charts" //https://codecentric.github.io/helm-charts
   chart      = "keycloak"
-  #version    = ""
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
-  set {
-    name  = "ingress.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "auth.adminUser"
-    value = var.keycloakuser
-  }
-
-  set {
-    name  = "auth.adminPassword	"
-    value = var.keycloakpassword
-  }
-}
-resource "kubernetes_ingress" "keycloak" {
-  depends_on = [
-    helm_release.keycloak
+  # version    = ""
+  values = [
+       "${file("./modules/helm/values/keycloak_values.yaml")}"
   ]
-  metadata {
-    name = "keycloak-ingress"
-  }
-
-  spec {
-    rule {
-      host = "keycloakchamshoss.com"
-
-      http {
-        path {
-          path = "/"
-
-          backend {
-            service_name = "keycloak"
-            service_port = 8080
-          }
-        }
-      }
-    }
-  }
 }
 # deploy prometheus chart using helm
 
@@ -67,37 +27,21 @@ resource "helm_release" "prometheus" {
   name       = "prometheus"
   # namespace  = "default"
   repository = "https://prometheus-community.github.io/helm-charts"
-  chart      = "prometheus"
-  #version    = ""
-  set {
-    name  = "service.type"
-    value = "ClusterIP"
-  }
+  chart      = "prometheus-community"
+  version    = "22.6.0"
   values = [
-    "${file("~/Documents/github/remote-dev-env/infrastructre/modules/kubernetes/values.yaml")}"
+       "${file("./modules/helm/values/prometheus_values.yaml")}"
   ]
-  set {
-    name  = "service.targets"
-    value = "ClusterIP"
-  }
 }
 # deploy grafana chart using helm
 resource "helm_release" "grafana" {
   depends_on = [null_resource.get-credentials]
   name       = "grafana"
   # namespace  = "test"
-
-
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "8.3.3"
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
-
-  set {
-    name  = "adminPassword"
-    value = var.grafanapassword
-  }
+  version    = "6.56.4"
+  values = [
+    "${file("./modules/helm/values/grafana_values.yaml")}"
+  ]
 }

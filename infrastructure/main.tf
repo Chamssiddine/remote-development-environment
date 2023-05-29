@@ -2,9 +2,9 @@ module "workstation" {
 
   source        = "./modules/workstation"
   gcp_project   = var.gcp_project
-  gcp_region    = "europe-west9"
-  gcp_zone      = "europe-west9-a"
-  storage-class = "STANDARD"
+  gcp_region    = var.gcp_region
+  gcp_zone      = var.gcp_zone
+  storage-class = var.storage-class
 }
 output "allworkstationip" {
   value = module.workstation.ip
@@ -12,15 +12,15 @@ output "allworkstationip" {
 module "kubernetes" {
   source      = "./modules/kubernetes"
   gcp_project = var.gcp_project
-  gcp_region  = "europe-west9"
-  gcp_zone    = "europe-west9-a"
+  # gcp_region  = "europe-west9"
+  # gcp_zone    = "europe-west9-a"
 
 }
 
-module "rbac" {
-  depends_on = [ module.kubernetes ]
-  source      = "./modules/rbac"
-}
+# module "rbac" {
+#   depends_on = [ module.kubernetes ]
+#   source      = "./modules/rbac"
+# }
 output "k8sclustersname" {
   value = module.kubernetes.k8sclustername
 }

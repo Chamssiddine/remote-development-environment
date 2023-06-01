@@ -16,12 +16,15 @@ module "kubernetes" {
   # gcp_zone    = "europe-west9-a"
 
 }
+locals {
+  kubernetes_cluster_name = module.kubernetes.k8sclustername
+}
 output "k8sclustersname" {
   value = module.kubernetes.k8sclustername
 }
 module "IamRbac" {
-  depends_on = [ module.kubernetes ]
   source      = "./modules/IamRbac"
+  k8s_cluster_name    = local.kubernetes_cluster_name
 }
 
 

@@ -4,9 +4,16 @@ variable "gcp_project" {
   description = "GCP project name"
   default     = "remotedevenv-383413"
 }
+# define GCP region
+variable "gcp_region" {
+  type        = string //europe-west9
+  description = "GCP region"
+  default     = "europe-west9"
+}
+
+# define GCP zone
 variable "gcp_zone" {
-  type        = string // europe-west9-a
+  type        = string //a
   description = "GCP zone"
-  default     = "europe-west9-a"
-  
+  default     = "a"
 }

@@ -18,6 +18,8 @@ apt-get update
 apt-get install -y google-cloud-sdk
 
 # Optional: Install additional components
+apt-get install kubectl
+apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
 # apt-get install -y google-cloud-cli-anthos-auth
 # apt-get install -y google-cloud-cli-app-engine-go
 # apt-get install -y google-cloud-cli-app-engine-java

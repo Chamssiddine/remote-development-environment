@@ -24,7 +24,7 @@ output "k8sclustersname" {
 }
 module "IamRbac" {
   source      = "./modules/IamRbac"
-  k8s_cluster_name    = local.kubernetes_cluster_name
+
 }
 
 

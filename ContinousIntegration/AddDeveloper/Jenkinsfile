@@ -21,11 +21,18 @@ pipeline {
                     gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
                     gcloud config set account \$(gcloud auth list --filter=status:ACTIVE --format='value(account)')
                     gcloud config set project remotedevenv-383413
+                    gcloud 
                     """
                 }
             }
         }
-
+        stage('Generate Kubernetes Config') {
+                            steps {
+                                withCredentials([file(credentialsId: 'serviceaccount', variable: 'SERVICE_ACCOUNT_KEY')]) {
+                                    sh "gcloud container clusters get-credentials primary --zone us-central1-a --project remotedevenv-383413"
+                                }
+                            }
+        }
         stage('Initialize the Infrastructure') {
             steps {
                 dir('infrastructure/modules/IamRbac') {

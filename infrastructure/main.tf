@@ -16,14 +16,18 @@ module "kubernetes" {
   # gcp_zone    = "europe-west9-a"
 
 }
-
-# module "IamRbac" {
-#   depends_on = [ module.kubernetes ]
-#   source      = "./modules/rbac"
-# }
 output "k8sclustersname" {
   value = module.kubernetes.k8sclustername
 }
+module "IamRbac" {
+  depends_on = [ module.kubernetes ]
+  source      = "./modules/IamRbac"
+}
+
+
+
+
+
 # module "helm_release" {
 #   source = "./modules/helm"
 # }

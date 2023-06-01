@@ -17,7 +17,7 @@ module "kubernetes" {
 
 }
 
-# module "rbac" {
+# module "IamRbac" {
 #   depends_on = [ module.kubernetes ]
 #   source      = "./modules/rbac"
 # }

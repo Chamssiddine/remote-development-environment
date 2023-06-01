@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+    tools {
+        terraform 'terraform'
+    }
+    environment {
+        SERVICE_ACCOUNT_KEY = credentials('serviceaccount')
+    }
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning the repo'
+                git branch: 'main', url: 'https://github.com/Chamssiddine/remote-development-environment.git'
+            }
+        }
+
+        stage('Authenticate with Google Cloud') {
+            steps {
+                withCredentials([file(credentialsId: 'serviceaccount', variable: 'SERVICE_ACCOUNT_KEY')]) {
+                    sh """
+                    gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
+                    gcloud config set account \$(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+                    gcloud config set project remotedevenv-383413
+                    """
+                }
+            }
+        }
+
+        stage('Initialize Infrastructure') {
+            steps {
+                dir('infrastructure') {
+                    withEnv(["GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}"]) {
+                        sh '''
+                        terraform init
+                        '''
+                    }
+                }
+            }
+        }
+        
+        stage('Plan Infrastructure Changes') {
+            steps {
+                dir('infrastructure') {
+                    withEnv(["GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}"]) {
+                        sh '''
+                        terraform plan
+                        '''
+                    }
+                }
+            }
+        }
+        
+        stage('Apply Infrastructure Changes') {
+            steps {
+                dir('infrastructure') {
+                    withEnv(["GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}"]) {
+                        sh '''
+                        terraform apply -auto-approve
+                        '''
+                    }
+                }
+            }
+        }
+    }
+}

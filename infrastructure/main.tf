@@ -12,8 +12,10 @@ output "allworkstationip" {
 module "kubernetes" {
   source      = "./modules/kubernetes"
   gcp_project = var.gcp_project
-  # gcp_region  = "europe-west9"
-  # gcp_zone    = "europe-west9-a"
+  wait_for_completion = true
+  timeouts {
+    create = "30m"  # Adjust the timeout value as per your requirements
+  }
 
 }
 output "k8sclustersname" {
@@ -21,6 +23,7 @@ output "k8sclustersname" {
 }
 module "IamRbac" {
   source      = "./modules/IamRbac"
+  
 }
 
 

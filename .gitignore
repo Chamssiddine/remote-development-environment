@@ -1,3 +1,24 @@
+#newdocumentation
+# Dependencies
+./newdocumentation/remote\ dev\ env/node_modules
+
+# Production
+./newdocumentation/remote\ dev\ env/build
+
+# Generated files
+./newdocumentation/remote\ dev\ env/.docusaurus
+./newdocumentation/remote\ dev\ env/.cache-loader
+
+# Misc
+./newdocumentation/remote\ dev\ env/.DS_Store
+./newdocumentation/remote\ dev\ env/.env.local
+./newdocumentation/remote\ dev\ env/.env.development.local
+./newdocumentation/remote\ dev\ env/.env.test.local
+./newdocumentation/remote\ dev\ env/.env.production.local
+
+./newdocumentation/remote\ dev\ env/npm-debug.log*
+./newdocumentation/remote\ dev\ env/yarn-debug.log*
+./newdocumentation/remote\ dev\ env/yarn-error.log*
 DeveloperAccessToGKE
 infrastructure/.terraform.lock.hcl
 infrastructure/.terraform

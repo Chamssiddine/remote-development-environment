@@ -32,6 +32,7 @@ export const Highlight = ({children, color}) => (
 Locals <Highlight color="#25c2a0">section</Highlight> :
 
 
+
 ```python
 locals {
   // to add new workstation just add a new list with it's name, machine_type, your prefered os and zone

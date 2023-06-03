@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 ---
+import ReactPlayer from 'react-player'
+
 ## Module Purpose
 The purpose of this module is to create the necessary infrastructure for developers, starting from firewall configuration, VPC setup, subnet configuration, and provisioning instances. It also provides the flexibility to easily add new instances for new developers or modify existing instances.
 
@@ -45,9 +47,10 @@ locals {
 ```
 Add a new entry for the new developer's workstation in the workstations map. Here's an example of how it should look:
 
-![Creating another workstation](https://user-images.githubusercontent.com/62959061/229340280-1b1614f1-7140-4274-b8df-a177f1aecf0c.mov)
+<div className="video__wrapper">
+    <ReactPlayer className="video__player" controls height="100%" url="/workstation.mov" width="100%" />
+</div>
 
-![Creating another workstation](/g.gif)
 
 ### 3. Save the **main.tf** file.
 

@@ -122,7 +122,6 @@ terraform apply
 ```
 
 
-
 **`Verify the SSO is working`**
 <div className="video__wrapper">
     <ReactPlayer className="video__player" controls height="100%" url="/verifyeverythingandtestsso.m4v" width="100%" />

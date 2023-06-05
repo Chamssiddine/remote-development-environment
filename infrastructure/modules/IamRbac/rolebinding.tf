@@ -28,13 +28,13 @@ locals {
   }
 }
 
-  # resource "kubernetes_namespace" "developers" {
-  #   for_each = local.developers
+  resource "kubernetes_namespace" "developers" {
+    for_each = local.developers
 
-  #   metadata {
-  #     name = local.developers[each.key].namespace
-  #   }
-  # }
+    metadata {
+      name = local.developers[each.key].namespace
+    }
+  }
 resource "kubernetes_role_binding" "developer_role_bindings" {
   for_each = local.developers
 

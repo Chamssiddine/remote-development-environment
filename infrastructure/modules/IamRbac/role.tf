@@ -35,8 +35,8 @@ resource "kubernetes_role" "roles" {
   for_each = local.roles
 
   metadata {
-    name      = local.roles[each.key].name
-    namespace = "rbac"
+    # name      = local.roles[each.key].name
+    name = "rbac"
   }
 
   dynamic "rule" {

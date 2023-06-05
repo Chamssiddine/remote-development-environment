@@ -17,7 +17,7 @@ locals {
 
   resource "kubernetes_namespace" "rolebindingdevelopers" {
     for_each = local.developers
-    name = each.value.namespace
+    # name = each.value.namespace
     metadata {
       # name = local.developers[each.key].namespace
       name = each.value.namespace

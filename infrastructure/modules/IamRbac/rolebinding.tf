@@ -15,13 +15,15 @@ locals {
   }
 }
 
-  # resource "kubernetes_namespace" "rolebindingdevelopers" {
-  #   for_each = local.developers
+  resource "kubernetes_namespace" "rolebindingdevelopers" {
+    for_each = local.developers
+    name = each.value.namespace
+    metadata {
+      # name = local.developers[each.key].namespace
+      name = each.value.namespace
+    }
+  }
 
-  #   metadata {
-  #     name = local.developers[each.key].namespace
-  #   }
-  # }
 resource "kubernetes_role_binding" "developer_role_bindings" {
   for_each = local.developers
 
@@ -32,7 +34,7 @@ resource "kubernetes_role_binding" "developer_role_bindings" {
     # namespace = kubernetes_namespace.developers[each.key].metadata[0].name
   }
 
-  role_ref { 
+  role_ref {
     kind      = "Role"
     name      = each.value.role_name
     api_group = "rbac.authorization.k8s.io"

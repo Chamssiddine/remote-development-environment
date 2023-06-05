@@ -32,7 +32,7 @@ resource "kubernetes_role_binding" "developer_role_bindings" {
     # namespace = kubernetes_namespace.developers[each.key].metadata[0].name
   }
 
-  role_ref {
+  role_ref { 
     kind      = "Role"
     name      = each.value.role_name
     api_group = "rbac.authorization.k8s.io"
@@ -44,7 +44,7 @@ resource "kubernetes_role_binding" "developer_role_bindings" {
     name      = local.developers[each.key].email
     api_group = "rbac.authorization.k8s.io"
   }
-  depends_on = [ kubernetes_namespace.rolebinding, kubernetes_namespace.role ]
+  # depends_on = [ kubernetes_namespace.rolebinding, kubernetes_namespace.role ]
 
 }
 

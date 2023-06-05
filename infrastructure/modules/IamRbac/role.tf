@@ -17,12 +17,18 @@ locals {
     # Add more roles as needed
   }
 }
-resource "kubernetes_namespace" "developers" {
-  # for_each = local.roles
+resource "kubernetes_namespace" "role" {
 
   metadata {
     # name = local.developers[each.key].namespace
-    name = "rbac"
+    name = "role"
+  }
+}
+resource "kubernetes_namespace" "rolebinding" {
+
+  metadata {
+    # name = local.developers[each.key].namespace
+    name = "rolebinding"
   }
 }
 resource "kubernetes_role" "roles" {
@@ -35,12 +41,12 @@ resource "kubernetes_role" "roles" {
 
   dynamic "rule" {
     for_each = [local.roles[each.key]]
-
     content {
       api_groups = rule.value.api_groups
       resources  = rule.value.resources
       verbs      = rule.value.verbs
     }
   }
-  depends_on = [ kubernetes_namespace.developers ]
+  depends_on = [ kubernetes_namespace.rolebinding, kubernetes_namespace.role ]
+
 }

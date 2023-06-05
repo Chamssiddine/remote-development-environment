@@ -4,25 +4,12 @@ locals {
       email     = "chamseddine.abderrahim@gmail.com"
       namespace = "chamseddine"
       role_name = "developer-role"
-      # role_rules = [
-      #   {
-      #     api_groups = ["", "extensions", "apps"]
-      #     resources  = ["*"]
-      #     verbs      = ["*"]
-      #   }
-      # ]
     },
     roletwo = { 
       email     = "mahdi.bouzidi@gmail.com"
       namespace = "mahdi"
       role_name = "viewer-role"
-      # role_rules = [
-      #   {
-      #     api_groups = ["", "extensions", "apps"]
-      #     resources  = ["pods"]
-      #     verbs      = ["get", "list", "create", "delete"]
-      #   }
-      # ]
+   
     },
     # Add more developers as needed
   }
@@ -57,30 +44,6 @@ resource "kubernetes_role_binding" "developer_role_bindings" {
     name      = local.developers[each.key].email
     api_group = "rbac.authorization.k8s.io"
   }
+  depends_on = [ kubernetes_namespace.rolebindingdevelopers ]
 }
 
-
-
-# resource "kubernetes_role" "developer_roles" {
-#   for_each = local.developers
-
-#   metadata {
-#     # name      = local.developers[each.key].role_name
-#     # namespace = kubernetes_namespace.developers[each.key].metadata[0].name
-#     name      = each.value.role_name
-#     namespace = each.value.namespace
-#   }
-
-#   rule {
-#     rule       = each.value.role_rules
-#     api_groups = rule.api_groups
-#     resources  = rule.resources
-#     verbs      = rule.verbs
-
-#     # for rule in each.role_rules :
-#     # api_groups = rule.api_groups
-#     # resources  = rule.resources
-#     # verbs      = rule.verbs
-
-#   }
-# }

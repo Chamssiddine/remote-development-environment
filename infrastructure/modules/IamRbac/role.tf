@@ -18,7 +18,7 @@ locals {
   }
 }
 resource "kubernetes_namespace" "developers" {
-  for_each = local.roles
+  # for_each = local.roles
 
   metadata {
     # name = local.developers[each.key].namespace
@@ -42,4 +42,5 @@ resource "kubernetes_role" "roles" {
       verbs      = rule.value.verbs
     }
   }
+  depends_on = [ kubernetes_namespace.developers ]
 }

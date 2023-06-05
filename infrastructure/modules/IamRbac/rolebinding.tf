@@ -28,7 +28,7 @@ locals {
   }
 }
 
-  resource "kubernetes_namespace" "developers" {
+  resource "kubernetes_namespace" "rolebindingdevelopers" {
     for_each = local.developers
 
     metadata {

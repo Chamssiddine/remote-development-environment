@@ -24,3 +24,10 @@ resource "google_compute_network" "kubernetes" {
   #   google_project_service.container
   # ]
 }
+# resource "google_compute_network_peering" "vpc_peering2" {
+#   name                 = "vpc_peering2"
+#   network              = google_compute_network.kubernetes.self_link
+#   peer_network         = var.network_2.self_link
+#   import_custom_routes = true
+#   export_custom_routes = true
+# }

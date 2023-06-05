@@ -20,7 +20,7 @@ variable "gcp_zone" {
 }
 
 variable "peering_name1" {
-  type        = string 
+  type        = string
   description = "The storage class of the Storage Bucket to create"
   default     = "workstationpeering"
 }

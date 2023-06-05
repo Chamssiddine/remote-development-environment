@@ -3,6 +3,7 @@ locals {
     "chamseddine.abderrahim@gmail.com" = "roles/container.developer"
     # Add more email addresses and roles as needed
     "mahdi.bouzidi@gmail.com" = "roles/container.developer"
+
   }
 }
 resource "google_project_iam_binding" "project_binding" {

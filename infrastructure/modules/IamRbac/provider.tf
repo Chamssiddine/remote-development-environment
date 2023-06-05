@@ -2,7 +2,7 @@ terraform {
   required_version = ">=1.3"
   backend "gcs" {
     bucket = "remotedevenv"
-    prefix = "terraform/state"
+    prefix = "terraform/developer"
   }
 
 }

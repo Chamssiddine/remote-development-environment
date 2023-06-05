@@ -3,6 +3,7 @@ terraform {
   backend "gcs" {
     bucket = "remotedevenv"
     prefix = "terraform/state"
+
   }
 
 }
@@ -15,7 +16,7 @@ terraform {
     }
     google = {
       source  = "hashicorp/google"
-      version = "~>4.0"
+      # version = "~>4.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -38,5 +39,5 @@ provider "helm" {
   }
 }
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
+  config_path = "~/.kube/config"
 }

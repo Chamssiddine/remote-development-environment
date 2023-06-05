@@ -80,6 +80,13 @@ resource "google_compute_network" "workstationvpc" {
   auto_create_subnetworks = false
   mtu                     = 1460
 }
+# resource "google_compute_network_peering" "vpc_peering" {
+#   name                 = var.peeringname
+#   network              = var.network_2.self_link
+#   peer_network         = var.network_1.self_link
+#   import_custom_routes = true
+#   export_custom_routes = true
+# }
 
 resource "google_compute_subnetwork" "wsaa-pvc-subnet" {
   name = "wsaa-pvc-subnet"

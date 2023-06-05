@@ -29,7 +29,7 @@ The following tools were used to create this project:
 - **Jenkins** (future): open-source automation server
 - **ArgoCD** (future): a continuous deployment tool
 - **Nexus** (future): repository manager for binary artifacts
-- **Velero** (future): backup and restore tool for Kubernetes clusters
+- **Veeam** (future): backup and restore tool for Kubernetes clusters
 - **Vault** (future): secrets management tool
 - **OLDAP** (future): LDAP server
 - **Serverspec** (future): testing framework for infrastructure
@@ -43,15 +43,15 @@ This project was developed using **Google Cloud Platform**.
 
 To get started with this project, follow these steps:
 
-1. Clone the repo.
-2. Install Hugo on your computer.
-3. Navigate to the documentation folder and run the command `$ hugo server` to see the more detailed documentation and follow it to recreate everything.
-4. Enjoy the PaperMod theme.
+1. Clone the repository.
+2. Visite the [Documentation Site](https://rdeplatform.netlify.app).
+3. Follow the detailed Doc step by step to recreate the project.
+
 
 ## The following features are planned for future development:
 
 - SSO with Keycloak and Kubernetes to give developers access to their own dedicated and isolated namespace with RBAC and Network Policy.
-- **Velero** backup solution.
+- **Veeam** backup solution.
 - CI/CD pipeline using **Jenkins**, **Nexus**, **ArgoCD**.
 - Serverspec tests.
 

@@ -1,7 +1,8 @@
 version: '3'
 services:
   jenkins:
-    image: jenkins/jenkins:2.401.1-lts-jdk11
+    # image: jenkins/jenkins:2.401.1-lts-jdk11
+    image: chamssiddine/jenkinsgcp:v1
     container_name: jenkins
     user: root
     ports:

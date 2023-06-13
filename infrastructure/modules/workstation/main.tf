@@ -1,8 +1,8 @@
 locals {
   // to add new workstation just add a new list with it's name, machine_type, your prefered os and zone
   workstations = {
-  "workstation1" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test93345675" },  
-  "workstation2" = { machine_type = "e2-medium", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test9375345657" },
+  "workstation2" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test93345675" },  
+  "workstation1" = { machine_type = "e2-medium", zone = "europe-west9-a", tag = ["ping", "ssh","keycloakldap"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test9375345657" },
   "workstation3" = { machine_type = "e2-micro", zone = "europe-west9-a", tag = ["ping", "ssh","metrics"], image = "ubuntu-2004-focal-v20230302", bucket_name = "test93753546" }
   }
 }

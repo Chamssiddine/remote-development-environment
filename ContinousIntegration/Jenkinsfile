@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    tools {
+      nodejs 'nodejs'
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning the repo'
+                git branch: 'main', url: 'https://github.com/Chamssiddine/rdenewdocumentation.git'
+            }
+        }
+        
+        stage('Npm Install') {
+            steps {
+                nodejs('nodejs') {
+                    npm 'install'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+
+                sh 'echo Quality Gate'
+                
+            }
+        }
+        stage('npm run build') {
+            steps {
+                nodejs('nodejs') {
+                    npm 'run build'
+                }
+            }
+        }
+
+    }
+}

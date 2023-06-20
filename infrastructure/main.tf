@@ -12,10 +12,6 @@ output "allworkstationip" {
 module "kubernetes" {
   source      = "./modules/kubernetes"
   gcp_project = var.gcp_project
-  # wait_for_completion = true
-  # timeouts {
-  #   create = "30m"  # Adjust the timeout value as per your requirements
-  # }
 
 }
 output "k8sclustersname" {

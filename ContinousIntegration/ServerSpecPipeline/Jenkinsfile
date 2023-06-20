@@ -1,0 +1,92 @@
+def getInstances() {
+    def instances = sh(
+        script: "gcloud compute instances list --filter=\"zone:(europe-west9-a)\" --format=\"value(name)\"",
+        returnStdout: true
+    ).trim().split("\n")
+
+    return instances
+}
+
+pipeline {
+    agent any
+
+    environment {
+        SERVICE_ACCOUNT_KEY = credentials('serviceaccount')
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo 'Cloning the repository'
+                git branch: 'main', url: 'https://github.com/Chamssiddine/remote-development-environment.git'
+            }
+        }
+
+        stage('Authenticate with Google Cloud') {
+            steps {
+                withCredentials([file(credentialsId: 'serviceaccount', variable: 'SERVICE_ACCOUNT_KEY')]) {
+                    sh '''
+                    gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
+                    gcloud config set account $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+                    gcloud config set project remotedevenv-383413
+                    '''
+                }
+            }
+        }
+
+        stage('Install Serverspec On Developers Instances') {
+            steps {
+                echo 'Installing Serverspec on all instances...'
+                script {
+                    def instances = getInstances()
+
+                    parallel instances.collectEntries { instance ->
+                        return [
+                            "${instance}" : {
+                                sh "gcloud compute ssh ${instance} --zone=europe-west9-a --command=\"sudo gem install serverspec >/dev/null && sudo gem install serverspec | tail -n 2\""
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+
+        stage('Docker Serverspec Tests') {
+            steps {
+                echo 'Copying docker_spec.rb to all instances...'
+                script {
+                    def instances = getInstances()
+                    def specFile = "provision/server_spec/spec/docker_spec.rb"
+
+                    parallel instances.collectEntries { instance ->
+                        return [
+                            "${instance}" : {
+                                sh "gcloud compute scp ${specFile} ${instance}:~/ --zone=europe-west9-a"
+                                sh "gcloud compute ssh ${instance} --zone=europe-west9-a --command=\"sudo rspec ~/docker_spec.rb --format documentation\""
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+
+        stage('Run Dev Tools Serverspec Tests') {
+            steps {
+                echo 'Copying dev_tools.rb and running additional tests on all instances...'
+                script {
+                    def instances = getInstances()
+                    def devTools = "provision/server_spec/spec/dev_tools.rb"
+
+                    parallel instances.collectEntries { instance ->
+                        return [
+                            "${instance}" : {
+                                sh "gcloud compute scp ${devTools} ${instance}:~/ --zone=europe-west9-a"
+                                sh "gcloud compute ssh ${instance} --zone=europe-west9-a --command=\"sudo rspec ~/dev_tools.rb --format documentation\""
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

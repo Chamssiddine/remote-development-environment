@@ -7,7 +7,6 @@ curl -L https://github.com/prometheus/node_exporter/releases/download/v0.16.0/$P
 
 # Extracting the archive
 tar xzvf $PACKAGE_NAME.tar.gz
-
 # Moving the executable to /usr/bin
 sudo cp ./$PACKAGE_NAME/node_exporter /usr/bin
 
@@ -27,3 +26,9 @@ sudo systemctl enable node_exporter
 sudo systemctl start node_exporter
 
 echo "finish intalling"
+
+sudo rm -rf $PACKAGE_NAME
+sudo rm -rf node_exporter.service
+sudo rm -rf install.sh
+
+echo "finish cleaning"

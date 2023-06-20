@@ -47,10 +47,11 @@ resource "google_compute_firewall" "ping" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "8080","9100", "1000-2000"]
+    ports    = ["80","443", "8080"]
   }
 
   source_tags = ["ping"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_firewall" "allowmetricsport" {
@@ -79,6 +80,7 @@ resource "google_compute_network" "workstationvpc" {
   name                    = "workstationvpc"
   auto_create_subnetworks = false
   mtu                     = 1460
+   private_service_enabled = true
 }
 # resource "google_compute_network_peering" "vpc_peering" {
 #   name                 = var.peeringname
@@ -94,6 +96,7 @@ resource "google_compute_subnetwork" "wsaa-pvc-subnet" {
   ip_cidr_range = "10.0.1.0/29"
   region        = "europe-west9"
   network       = google_compute_network.workstationvpc.id
+  private_ip_google_access = true
 }
 
 resource "google_compute_instance" "workstation" {

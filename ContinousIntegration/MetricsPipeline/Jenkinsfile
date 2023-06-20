@@ -1,0 +1,62 @@
+def getInstances() {
+    def instances = sh(
+        script: "gcloud compute instances list --filter=\"zone:(europe-west9-a)\" --format=\"value(name)\"",
+        returnStdout: true
+    ).trim().split("\n")
+
+    return instances
+}
+
+pipeline {
+    agent any
+
+    environment {
+        SERVICE_ACCOUNT_KEY = credentials('serviceaccount')
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo 'Cloning the repository'
+                git branch: 'main', url: 'https://github.com/Chamssiddine/remote-development-environment.git'
+            }
+        }
+
+        stage('Authenticate with Google Cloud') {
+            steps {
+                withCredentials([file(credentialsId: 'serviceaccount', variable: 'SERVICE_ACCOUNT_KEY')]) {
+                    sh '''
+                    gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
+                    gcloud config set account $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+                    gcloud config set project remotedevenv-383413
+                    '''
+                }
+            }
+        }
+
+        stage('Install Node Exporter On Developers Instances') {
+            steps {
+                echo 'Installing Serverspec on all instances...'
+                script {
+                    def instances = getInstances()
+
+                    parallel instances.collectEntries { instance ->
+                        return [
+                            "${instance}" : {
+                               sh """
+                                gcloud compute scp ./scripts/metrics/install.sh $instances:. --zone=europe-west9-a
+                                gcloud compute scp ./scripts/metrics/node_exporter.service $instances:. --zone=europe-west9-a 
+                                gcloud compute ssh $instances --command='sudo bash ./install.sh'  --zone=europe-west9-a
+                                echo "----------horray my metrics are exposed---------- "
+                               """
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+
+
+
+    }
+}

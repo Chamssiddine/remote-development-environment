@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Trigger Docker Ansible Tower Job') {
+            steps {
+                ansibleTower jobTemplate: 'docker',
+                jobType: 'run', scmBranch: 'main', 
+                throwExceptionWhenFail: false, 
+                towerCredentialsId: 'awxcredentials ',
+                towerLogLevel: 'full', towerServer: 'awx'            
+                
+            }
+        }
+        stage('Trigger Dev Tools Ansible Tower Job') {
+            steps {
+                ansibleTower jobTemplate: 'devtools',
+                jobType: 'run', scmBranch: 'main', 
+                throwExceptionWhenFail: false, 
+                towerCredentialsId: 'awxcredentials ',
+                towerLogLevel: 'full', towerServer: 'awx'            
+                
+            }
+        }
+    }
+}

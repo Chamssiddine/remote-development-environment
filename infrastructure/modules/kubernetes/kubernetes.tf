@@ -28,9 +28,9 @@ resource "google_container_cluster" "primary" {
     horizontal_pod_autoscaling {
       disabled = false
     }
-    gke_backup_agent_config {
-      enabled = true
-    }
+    # gke_backup_agent_config {
+    #   enabled = true
+    # }
   }
   release_channel {
     channel = "REGULAR"
@@ -50,16 +50,16 @@ resource "google_container_cluster" "primary" {
 
 
 }
-resource "google_gke_backup_backup_plan" "my_backup_plan" {
-  name    = "my-backup-plan"
-  cluster = google_container_cluster.primary.id
-  location = "us-central1"
-  backup_config {
-    include_volume_data = true
-    include_secrets = true
-    all_namespaces = true
-  }
-}
+# resource "google_gke_backup_backup_plan" "my_backup_plan" {
+#   name    = "my-backup-plan"
+#   cluster = google_container_cluster.primary.id
+#   location = "us-central1"
+#   backup_config {
+#     include_volume_data = true
+#     include_secrets = true
+#     all_namespaces = true
+#   }
+# }
 # Get the credentials 
 resource "null_resource" "get-credentials" {
 

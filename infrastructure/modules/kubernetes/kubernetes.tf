@@ -17,6 +17,8 @@ resource "google_container_cluster" "primary" {
   logging_service          = "logging.googleapis.com/kubernetes"
   monitoring_service       = "monitoring.googleapis.com/kubernetes"
   networking_mode          = "VPC_NATIVE"
+  security_group           = "gke-security-groups@chamssiddineabd.tech"
+
   # Optional, if you want multi-zonal cluster
   node_locations = [
     "us-central1-b"
@@ -46,6 +48,9 @@ resource "google_container_cluster" "primary" {
     enable_private_nodes    = true
     enable_private_endpoint = false
     master_ipv4_cidr_block  = "172.16.0.0/28"
+  }
+  authenticator_groups_config {
+    security_group = "gke-security-groups@chamssiddineabd.tech"
   }
 
 

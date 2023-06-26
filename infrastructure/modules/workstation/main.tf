@@ -80,7 +80,6 @@ resource "google_compute_network" "workstationvpc" {
   name                    = "workstationvpc"
   auto_create_subnetworks = false
   mtu                     = 1460
-   private_service_enabled = true
 }
 # resource "google_compute_network_peering" "vpc_peering" {
 #   name                 = var.peeringname

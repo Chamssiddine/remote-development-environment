@@ -43,12 +43,12 @@ pipeline {
                     parallel instances.collectEntries { instance ->
                         return [
                             "${instance}" : {
-                               sh """
+                               sh '''
                                 gcloud compute scp ./scripts/metrics/install.sh $instances:. --zone=europe-west9-a
                                 gcloud compute scp ./scripts/metrics/node_exporter.service $instances:. --zone=europe-west9-a 
                                 gcloud compute ssh $instances --command='sudo bash ./install.sh'  --zone=europe-west9-a
                                 echo "----------horray my metrics are exposed---------- "
-                               """
+                               '''
                             }
                         ]
                     }

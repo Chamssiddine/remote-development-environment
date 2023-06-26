@@ -1,3 +1,4 @@
+
 resource "google_project_iam_member" "chamseddine_iam_binding" {
   project = "remotedevenv-383413"
   role    = "roles/editor"
@@ -40,4 +41,29 @@ resource "kubernetes_role_binding" "chamseddine_role_binding" {
     name     = "chamseddine.abderrahim@gmail.com"
     api_group = "rbac.authorization.k8s.io"
   }
+}
+
+resource "kubernetes_role_binding" "default_deny_role_binding" {
+  metadata {
+    name      = "default-deny-role-binding"
+    namespace = "default"
+  }
+
+  role_ref {
+    kind     = "ClusterRole"
+    name     = "view"
+    api_group = "rbac.authorization.k8s.io"
+  }
+
+  subject {
+    kind     = "User"
+    name     = "chamseddine.abderrahim@gmail.com"
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
+
+data "google_project" "current" {}
+
+output "kubernetes_cluster_ca_certificate" {
+  value = data.google_project.current.project_id
 }

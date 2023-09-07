@@ -14,7 +14,8 @@ https://user-images.githubusercontent.com/62959061/229339823-0ffe29e0-6d53-4fce-
 ## Diagram of the project (In Progress)
 
 
-![remodedevenv](https://user-images.githubusercontent.com/62959061/230421457-8730722c-31f3-4039-a1ad-578ee3f0ae13.png)
+
+![Screenshot 2023-09-07 at 8 25 10 AM](https://github.com/Chamssiddine/remote-development-environment/assets/62959061/c7b879fd-2267-49f6-9216-9bc55ed6434d)
 
 
 The following tools were used to create this project:

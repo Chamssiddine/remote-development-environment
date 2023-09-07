@@ -30,7 +30,8 @@ The following tools were used to create this project:
 - **Jenkins** (future): open-source automation server
 - **ArgoCD** (future): a continuous deployment tool
 - **Nexus** (future): repository manager for binary artifacts
-- **Veeam** (future): backup and restore tool for Kubernetes clusters
+- **Veeam** (future): backup and restore tool for Cloud Machines
+- **KastenK10** (future): backup and restore tool for Kubernetes clusters
 - **Vault** (future): secrets management tool
 - **OLDAP** (future): LDAP server
 - **Serverspec** (future): testing framework for infrastructure
@@ -59,7 +60,7 @@ To get started with this project, follow these steps:
 
 ## Things Missing in the Documentation
 
-Currently, the documentation is missing screenshots for configuring VPC peering and SSO with Keycloak. However, Terraform files are provided, and some modifications need to be made to get Grafana with Keycloak. I'm doing my best to get the detailed documentation done, but the project is still in progress. If you have any questions, feel free to contact us at `chamssiddine.abdderrahim@etudiant-isi.utm.tn`.
+Currently, the documentation is missing Kubernetes Multi-tenancy Screenshots. I'm doing my best to get the detailed documentation done, but the project is still in progress. If you have any questions, feel free to contact us at `chamssiddine.abdderrahim@etudiant-isi.utm.tn`.
 
 ## Troubleshooting
 
@@ -69,4 +70,4 @@ Check the project's [GitHub Issues](https://github.com/Chamssiddine/remote-dev-e
 Make sure you have followed all the instructions in the documentation carefully.
 Double-check your configurations and make sure all required dependencies are installed.
 Try restarting the necessary services or rebooting your machine.
-If you are still experiencing issues, feel free to reach out to the project's maintainer(s) via the email provided in the README file.
+If you are still experiencing issues, feel free to reach out to the me via email.

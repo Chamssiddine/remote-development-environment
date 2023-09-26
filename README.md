@@ -27,14 +27,14 @@ The following tools were used to create this project:
 - **Grafana**: open-source analytics and monitoring platform
 - **Prometheus**: monitoring and alerting toolkit
 - **Keycloak**: open-source identity and access management solution
-- **Jenkins** (future): open-source automation server
+- **Jenkins** : open-source automation server
 - **ArgoCD** (future): a continuous deployment tool
 - **Nexus** (future): repository manager for binary artifacts
-- **Veeam** (future): backup and restore tool for Cloud Machines
-- **KastenK10** (future): backup and restore tool for Kubernetes clusters
-- **Vault** (future): secrets management tool
+- **Veeam** : backup and restore tool for Cloud Machines
+- **KastenK10** : backup and restore tool for Kubernetes clusters
+- **Vault** (: secrets management tool
 - **OLDAP** (future): LDAP server
-- **Serverspec** (future): testing framework for infrastructure
+- **Serverspec** : testing framework for infrastructure
 
 ## Cloud Provider:
 

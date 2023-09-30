@@ -1,7 +1,7 @@
 terraform {
   required_version = ">=1.3"
   backend "gcs" {
-    bucket = "remotedevenv"
+    bucket = "remotedevenvinfra"
     prefix = "terraform/state"
 
   }

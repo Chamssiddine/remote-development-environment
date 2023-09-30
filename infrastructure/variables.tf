@@ -2,7 +2,7 @@
 variable "gcp_project" {
   type        = string // workstation-375011
   description = "GCP project name"
-  default     = "remotedevenv-383413"
+  default     = "caramel-vine-393909"
 }
 
 # define GCP region

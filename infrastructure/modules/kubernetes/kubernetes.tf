@@ -17,7 +17,7 @@ resource "google_container_cluster" "primary" {
   logging_service          = "logging.googleapis.com/kubernetes"
   monitoring_service       = "monitoring.googleapis.com/kubernetes"
   networking_mode          = "VPC_NATIVE"
-  security_group           = "gke-security-groups@chamssiddineabd.tech"
+  # security_group           = "gke-security-groups@chamssiddineabd.tech"
 
   # Optional, if you want multi-zonal cluster
   node_locations = [
@@ -49,9 +49,9 @@ resource "google_container_cluster" "primary" {
     enable_private_endpoint = false
     master_ipv4_cidr_block  = "172.16.0.0/28"
   }
-  authenticator_groups_config {
-    security_group = "gke-security-groups@chamssiddineabd.tech"
-  }
+  # authenticator_groups_config {
+  #   security_group = "gke-security-groups@chamssiddineabd.tech"
+  # }
 
 
 }
@@ -66,14 +66,14 @@ resource "google_container_cluster" "primary" {
 #   }
 # }
 # Get the credentials 
-resource "null_resource" "get-credentials" {
+# resource "null_resource" "get-credentials" {
 
-  depends_on = [google_container_cluster.primary]
+#   depends_on = [google_container_cluster.primary]
 
-  provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials primary --zone us-central1-a --project ${var.gcp_project}"
-  }
-}
+#   provisioner "local-exec" {
+#     command = "gcloud container clusters get-credentials primary --zone us-central1-a --project ${var.gcp_project}"
+#   }
+# }
 
 # provider "helm" {
 #   kubernetes {

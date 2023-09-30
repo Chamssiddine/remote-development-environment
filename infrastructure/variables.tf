@@ -40,3 +40,7 @@ variable "workstationvpc" {
   description = "The storage class of the Storage Bucket to create"
   default     = "wsaa-vpc-network"
 }
+
+
+
+
